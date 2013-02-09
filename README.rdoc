@@ -1,0 +1,3 @@
+# Glittery
+
+Glittery is an app to allow an artist to upload and show their work.
