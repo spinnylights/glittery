@@ -4,12 +4,13 @@ gem 'rails', '3.2.11'
 gem 'pg'
 
 group :development, :test do
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 2.0"
 end
 
 group :test do
   gem "capybara"
   gem "cucumber-rails"
+  gem "database_cleaner"
 end
 
 group :assets do
