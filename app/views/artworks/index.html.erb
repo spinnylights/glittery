@@ -1,0 +1,9 @@
+<div id="gallery">
+  <% @artworks.each do |artwork| %>
+    <div class="art">
+      <h3><%= artwork.name %></h3>
+      <%= image_tag(artwork.image_url) %>
+      <%= sanitize(artwork.description) %>
+    </div>
+  <% end %>
+</div>

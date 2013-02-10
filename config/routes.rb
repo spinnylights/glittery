@@ -1,4 +1,8 @@
 Glittery::Application.routes.draw do
+  root to: 'artworks#index'
+
+  resources :artworks
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

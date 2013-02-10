@@ -2,15 +2,21 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'pg'
+gem 'faker'
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.0"
+  gem 'rspec-rails', '~> 2.0'
+end
+
+group :development do
+  gem 'annotate'
 end
 
 group :test do
-  gem "capybara"
-  gem "cucumber-rails"
-  gem "database_cleaner"
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
 end
 
 group :assets do

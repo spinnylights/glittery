@@ -13,4 +13,3 @@ end
 Then /^I should see a a link to an artist bio$/ do
   page.should have_selector('a', text: "bio")
 end
-
