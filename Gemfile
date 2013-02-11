@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'pg'
 gem 'faker'
+gem 'launchy'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
 end
 
 group :development do
@@ -15,6 +15,7 @@ end
 group :test do
   gem 'capybara'
   gem 'cucumber-rails'
+  gem 'rspec-rails', '~> 2.0'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
 end
