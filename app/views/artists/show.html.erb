@@ -1,0 +1,9 @@
+<div id="artist_info">
+  <h2 id="name"><%= @artist.name %></h2>
+  <span id="email">
+    <%= link_to "contact", "mailto:#{@artist.email}" %>
+  </span><br>
+  <%= image_tag @artist.photo_url %>
+  <p id="bio"><%= @artist.bio %></p>
+  <a href="/">back</a>
+</div>
