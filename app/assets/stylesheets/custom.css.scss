@@ -1,0 +1,36 @@
+/* universal */
+
+html {
+  background: black;
+  text-align: center;
+  color: white
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6{
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+h3 {
+  font-size: 1.1em;
+}
+
+a:link, a:visited {
+  font-size: 1.05em;
+  color: #d3d3d3;
+}
+
+a:hover {
+  color: #5f5d5b;
+}
+
+a:active {
+  color: white;
+}
