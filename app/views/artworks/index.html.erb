@@ -3,7 +3,10 @@
     <div class="art">
       <h3><%= artwork.name %></h3><br>
       <div class="image">
-        <%= image_tag(artwork.image_url) %><br>
+        <%= link_to(artwork) do %>
+          <%= image_tag(artwork.image_url) %>
+        <% end %>
+        <br>
       </div>
     </div>
   <% end %>
