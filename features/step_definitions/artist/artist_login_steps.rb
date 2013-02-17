@@ -5,6 +5,7 @@ end
 When /^I enter the correct credentials$/ do
   fill_in 'Username', with: 'grangybears'
   fill_in 'Password', with: 'iam2bearSk!n'
+  fill_in 'Confirm Password', with: 'iam2bearSk!n'
   click_button 'Log in'
 end
 
@@ -15,6 +16,7 @@ end
 When /^I enter the wrong credentials$/ do
   fill_in 'Username', with: 'imabag'
   fill_in 'Password', with: 'imabag'
+  fill_in 'Confirm Password', with: 'imabag'
   click_button 'Log in'
 end
 

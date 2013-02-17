@@ -13,6 +13,8 @@ $max_width: 888px;
     float: left;
     width: $img_dimensions;
     padding: 30px 10px 30px;
+    
+    a { text-decoration: none; }
 
     .image {
       width:  $img_dimensions;

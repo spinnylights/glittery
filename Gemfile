@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 gem 'pg'
 gem 'faker'
 gem 'launchy'
+gem 'bcrypt-ruby'
 
 group :development, :test do
 end
