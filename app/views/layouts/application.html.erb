@@ -7,9 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-   <h1>GLITTERY</h1>
+    <h1>GLITTERY</h1>
 
     <%= link_to "bio", artist_path %>
+
+    <div class="flash_box">
+      <% flash.each do |key, value| %>
+        <div class="flash"><%= value %></div>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>

@@ -3,8 +3,10 @@ Glittery::Application.routes.draw do
 
   resources :artworks
   resource  :artist
+  resources :sessions, only: [:new, :create, :destroy]
 
-  match "login" => "artists#index"
+  match 'login'  => 'sessions#new'
+  match 'logout' => 'sessions#destroy', via: :delete
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

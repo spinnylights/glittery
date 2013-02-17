@@ -19,6 +19,7 @@ namespace :db do
     Artist.create!(name: 'Grangy Bears',
                    email: 'grangy@grangy.com',
                    photo_url: 'grangy.jpg',
-                   bio:   'I\'m an artist that loves bags.')
+                   bio:   'I\'m an artist that loves bags.',
+                   password: 'iam2bearSk!n')
   end 
 end
