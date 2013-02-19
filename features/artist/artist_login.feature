@@ -6,11 +6,13 @@ Feature: Artist logs in
 
   Scenario: Artist logs in with correct credentials 
     Given that I am on the /login page
+    And   I am not logged in
     When  I enter the correct credentials
     Then  I should be on the main admin page
 
   Scenario: Artist attempts login with incorrect credentials
     Given that I am on the /login page
+    And   I am not logged in
     When  I enter the wrong credentials
     Then  I should still be on the /login page
     And   I should be told that my credentials are wrong
