@@ -1,10 +1,11 @@
 class ArtistsController < ApplicationController
   def show
-    @artist = Artist.find_by_id(1)
+    @artist = @@artist
   end
   
   def edit
-    if # artist is not logged in
+    if !@@artist.remember_token || 
+    cookies[:remember_token] != @@artist.remember_token 
       redirect_to '/login'
     end
   end

@@ -6,7 +6,7 @@ Feature: Artist logs out
 
   Scenario: Artist logs out
     Given that I am on the main admin page
-    When  I click "Log out" 
-    Then  I should be on the main gallery page
+    When  I click 'Log out' 
+    Then  I should see a gallery section 
     And   I should not be able to edit anything
     And   /login should give me a login prompt
