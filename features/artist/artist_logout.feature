@@ -5,7 +5,7 @@ Feature: Artist logs out
   I want to log out from the site's admin area
 
   Scenario: Artist logs out
-    Given that I am on the main admin page
+    Given that I am on the main admin page (and thus logged in)
     When  I click 'Log out' 
     Then  I should see a gallery section 
     And   I should not be able to edit anything

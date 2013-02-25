@@ -1,4 +1,4 @@
-Given /^that I am on the main admin page$/ do
+Given /^that I am on the main admin page \(and thus logged in\)$/ do
   visit '/artist/edit'
   if page.has_content? 'Log in'
     fill_in 'Username', with: 'grangybears'
