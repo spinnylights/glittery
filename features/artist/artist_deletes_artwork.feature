@@ -4,7 +4,7 @@ Feature: Artist deletes artwork
   As the artist
   I want to delete an artwork from the database
 
-  Scenario: Artist logs out
+  Scenario: Artist deletes an artwork 
     Given that I am on the main admin page (and thus logged in)
     When I click Edit Gallery
     And click delete under Bag of Bags

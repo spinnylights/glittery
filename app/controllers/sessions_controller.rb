@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    if @@artist.remember_token && 
-    cookies[:remember_token] = @@artist.remember_token 
+    if signed_in?
       redirect_to edit_artist_path
     end
   end

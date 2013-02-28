@@ -3,6 +3,10 @@ Given /^that I am on the \/login page$/ do
 end
 
 Given /^I am not logged in$/ do
+  if page.has_content? 'Administration'
+    click_button 'Log out'
+    visit '/login'
+  end
   page.should have_content 'Log in'
 end
 
