@@ -4,6 +4,7 @@ Feature: Artist logs out
   As the artist
   I want to log out from the site's admin area
 
+  @password_sensitive
   Scenario: Artist logs out
     Given that I am on the main admin page (and thus logged in)
     When  I click 'Log out' 

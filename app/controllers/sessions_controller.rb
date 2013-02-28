@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if @@artist && @@artist.authenticate(params[:password])
-    @@artist.create_remember_token
+      @@artist.create_remember_token
       if params[:remember_me]
         cookies.permanent[:remember_token] = @@artist.remember_token
       else

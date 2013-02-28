@@ -5,6 +5,7 @@ Given /^that I am on the main admin page \(and thus logged in\)$/ do
     fill_in 'Password', with: 'iam2bearSk!n'
     click_button 'Log in'
   end
+  page.should have_text 'Administration'
 end
 
 When /^I click 'Log out'$/ do
