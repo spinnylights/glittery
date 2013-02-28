@@ -9,4 +9,9 @@ class ArtworksController < ApplicationController
 
   def new
   end
+  
+  def destroy 
+    Artwork.find(params[:id]).destroy
+    redirect_to '/' 
+  end
 end
