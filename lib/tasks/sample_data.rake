@@ -20,6 +20,7 @@ namespace :db do
                    email: 'grangy@grangy.com',
                    photo_url: 'grangy.jpg',
                    bio:   'I\'m an artist that loves bags.',
-                   password: 'iam2bearSk!n')
+                   password: 'iam2bearSk!n',
+                   site_title: 'Glittery')
   end 
 end

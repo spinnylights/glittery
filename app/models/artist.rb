@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
   attr_accessible :bio, :email, :name, :photo_url, :password,
-   :password_confirmation, :remember_token
+   :password_confirmation, :remember_token, :site_title
   has_secure_password
 
   def create_remember_token

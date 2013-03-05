@@ -10,6 +10,7 @@
           <br>
         </div>
         <% if signed_in? %>
+          <%= link_to 'Edit', edit_artwork_path(artwork.id) %><br>
           <%= link_to 'Delete', artwork, 
             method: 'delete', confirm: 'Are you sure?' %>
         <% end %>

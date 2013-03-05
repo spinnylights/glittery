@@ -1,0 +1,11 @@
+<%= image_tag(@artwork.image_url) %>
+<%= form_for @artwork, url: { action: 'update' } do |a| %>
+  <%= a.label      :name %>
+  <%= a.text_field :name %><br>
+
+  <%= a.label      :description %><br>
+  <%= a.text_area  :description, size: '50x15' %><br>
+
+  <%= a.submit 'Submit' %>
+<% end %>
+<%= link_to 'Back', '/' %>

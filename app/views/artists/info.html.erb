@@ -1,0 +1,17 @@
+<h3>Change Info</h3>
+<%= form_for Artist.find_by_id(1), url: { action: 'update' } do |a| %>
+  <%= a.label      :name %>
+  <%= a.text_field :name %><br>
+
+  <%= a.label      :email %>
+  <%= a.text_field :email %><br>
+
+  <%= a.label      :site_title %>
+  <%= a.text_field :site_title %><br>
+
+  <%= a.label      :bio %>
+  <%= a.text_field :bio %><br>
+
+  <%= a.submit 'Submit' %>
+<% end %>
+<%= link_to 'Back', edit_artist_path %>
