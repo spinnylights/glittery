@@ -3,7 +3,7 @@
 # Table name: artworks
 #
 #  id          :integer          not null, primary key
-#  image_url   :string(255)
+#  image       :attachment
 #  name        :string(255)
 #  description :text
 #  created_at  :datetime         not null
@@ -11,5 +11,6 @@
 #
 
 class Artwork < ActiveRecord::Base
-  attr_accessible :description, :image_url, :name
+  attr_accessible :description, :image, :name
+  has_attached_file :image, { url: "/art/:filename" }
 end

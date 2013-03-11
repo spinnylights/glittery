@@ -4,6 +4,15 @@ class ArtworksController < ApplicationController
   end
 
   def new
+    if !signed_in?
+      redirect_to '/login'
+    end
+    @artwork = Artwork.new
+  end
+
+  def create
+    @artwork = Artwork.create(params[:artwork])
+    redirect_to '/'
   end
 
   def show

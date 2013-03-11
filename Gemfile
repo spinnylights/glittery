@@ -5,6 +5,8 @@ gem 'pg'
 gem 'faker'
 gem 'launchy'
 gem 'bcrypt-ruby'
+gem 'paperclip', '~> 3.0' 
+gem 'rmagick'
 
 group :development, :test do
 end

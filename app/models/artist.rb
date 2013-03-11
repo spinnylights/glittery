@@ -11,7 +11,7 @@ class Artist < ActiveRecord::Base
     self.remember_token = nil
   end
 
-  def artist
+  def self.artist
     Artist.find_by_id(1)
   end
 end

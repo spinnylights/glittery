@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304225554) do
+ActiveRecord::Schema.define(:version => 20130305075440) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -29,11 +29,14 @@ ActiveRecord::Schema.define(:version => 20130304225554) do
   add_index "artists", ["remember_token"], :name => "index_artists_on_remember_token"
 
   create_table "artworks", :force => true do |t|
-    t.string   "image_url"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end
