@@ -7,6 +7,7 @@ gem 'launchy'
 gem 'bcrypt-ruby'
 gem 'paperclip', '~> 3.0' 
 gem 'rmagick'
+gem 'dynamic_form'
 
 group :development, :test do
 end

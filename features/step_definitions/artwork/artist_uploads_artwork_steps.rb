@@ -17,14 +17,14 @@ end
 Then /^the artwork's name and image should appear in the gallery$/ do
   page.should have_content 'Piccary Habits'
   page.should have_selector(:xpath, 
-              '//div[@class="art"]//a//img[@src="/assets/124658.jpg')
+              '//div[@class="art"]//a//img[@alt="124658"]')
 end
 
 Then /^its name, image, and description should appear on its page$/ do
   page.find(:xpath, 
             '//div[@id="Piccary Habits"]/div[@class="image"]/a').click
   page.should have_content 'Piccary Habits'
-  page.should have_selector(:xpath, '//a[@src="/assets/124658.jpg')
+  page.should have_selector(:xpath, '//img[@alt="124658"]')
   page.should have_content 'The essence of piccary behaviors.'
 end
 

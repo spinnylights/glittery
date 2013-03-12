@@ -5,8 +5,10 @@ Feature: Gallery display
   I want to see an interactive display of artwork
 
   Scenario: Gallery displays on main page
+    Given that I am an appreciator (and thus not logged in)
     When I visit the main page
     Then I should see artwork images
+    And  I should not see Edit, Delete, or Add New Artwork links
 
   Scenario: Appreciator clicks on a piece
     When I click on an artwork image

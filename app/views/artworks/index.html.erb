@@ -1,4 +1,6 @@
+<% if signed_in? %>
 <%= link_to 'Add New Artwork', new_artwork_path %>
+<% end %>
 <div id="gallery">
   <% @artworks.each do |artwork| %>
     <div class="art">

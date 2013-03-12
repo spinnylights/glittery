@@ -11,8 +11,12 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    @artwork = Artwork.create(params[:artwork])
-    redirect_to '/'
+    @artwork = Artwork.new(params[:artwork])
+    if @artwork.save
+      redirect_to '/'
+    else
+      render 'new'
+    end
   end
 
   def show
