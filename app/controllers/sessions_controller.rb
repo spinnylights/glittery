@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     if signed_in?
       redirect_to edit_artist_path
     end
+    @@artist.login_setup
   end
 
   def create
