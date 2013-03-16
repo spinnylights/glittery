@@ -8,6 +8,7 @@ gem 'bcrypt-ruby'
 gem 'paperclip', '~> 3.0' 
 gem 'rmagick'
 gem 'dynamic_form'
+gem 'rainbow'
 
 group :development, :test do
 end
