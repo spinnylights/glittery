@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130305075440) do
+ActiveRecord::Schema.define(:version => 20130316082216) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130305075440) do
     t.string   "remember_token"
     t.string   "new_password"
     t.string   "site_title"
+    t.string   "username"
   end
 
   add_index "artists", ["remember_token"], :name => "index_artists_on_remember_token"
