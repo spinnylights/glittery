@@ -1,4 +1,4 @@
-#!/user/bin/env ruby
+#!/usr/bin/env ruby
 require 'rainbow'
 
 def auth_loop(attribute,length_minimum)
@@ -9,7 +9,7 @@ def auth_loop(attribute,length_minimum)
     print "#{attr_hash.keys.first.to_s.capitalize}: "
     attr_hash[attribute] = gets.chomp
     if attr_hash[attribute].size < length_minimum
-      puts ">> #{attr_hash[attribute].capitalize} must be at \
+      puts ">> #{attr_hash.keys.first.to_s.capitalize} must be at \
 least #{length_minimum} characters".bright
     else
       break
@@ -27,4 +27,5 @@ File.open("config/admin.yml", "w") do |file|
   attributes.each do |key, value|
     file.puts "!ruby/sym #{key}: #{value}"
   end
+  print "Success!".bright
 end

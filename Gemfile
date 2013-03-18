@@ -10,9 +10,6 @@ gem 'rmagick'
 gem 'dynamic_form'
 gem 'rainbow'
 
-group :development, :test do
-end
-
 group :development do
   gem 'annotate'
 end
@@ -23,6 +20,7 @@ group :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'aruba'
 end
 
 group :assets do
