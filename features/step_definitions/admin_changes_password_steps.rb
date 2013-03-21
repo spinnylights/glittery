@@ -1,3 +1,7 @@
+Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |username, password|
+  let(:admin) { Admin.new(username, password) }
+end
+
 When /^I click Change Password$/ do
   click_link 'Change Password'
 end
