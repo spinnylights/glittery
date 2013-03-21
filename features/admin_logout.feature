@@ -1,11 +1,11 @@
-Feature: Artist logs out 
+Feature: Admin logs out 
 
   So that I can end my session and prevent unauthorized access 
-  As the artist
+  As the admin
   I want to log out from the site's admin area
 
   @password_sensitive
-  Scenario: Artist logs out
+  Scenario: Admin logs out
     Given that I am on the main admin page (and thus logged in)
     When  I click 'Log out' 
     Then  I should see a gallery section 

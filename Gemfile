@@ -16,7 +16,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'rspec-rails', '~> 2.0'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
