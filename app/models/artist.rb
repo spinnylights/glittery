@@ -17,5 +17,28 @@ class Artist < ActiveRecord::Base
       self.username = attributes[:username]
       self.password = attributes[:password]
     end
+    self.save
+  end
+
+  # This method allows Artist to behave like a singleton class but
+  # still inheret from ActiveRecord::Base.
+
+  def self.only_artist(meth = nil, *args)
+    the_artist = Artist.first
+
+    if meth == nil
+      return the_artist
+    end
+    
+    unless meth.is_a? Symbol || String
+      raise TypeError, "Symbol or string expected as first argument" 
+    end
+
+    m = the_artist.method(meth)
+    to_return = m.call(*args)
+    if meth =~ /[a-zA-Z\d_]{1,}=/
+      the_artist.save
+    end
+    to_return
   end
 end

@@ -1,8 +1,8 @@
 Given /^that I am on the main admin page \(and thus logged in\)$/ do
   visit '/artist/edit'
   if page.has_content? 'Log in'
-    fill_in 'Username', with: 'grangybears'
-    fill_in 'Password', with: 'iam2bearSk!n'
+    fill_in 'Username', with: correct_username
+    fill_in 'Password', with: correct_password
     click_button 'Log in'
   end
   page.should have_text 'Administration'
