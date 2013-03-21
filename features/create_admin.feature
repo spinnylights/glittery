@@ -8,11 +8,13 @@ Feature: Admin login info YAML generator
   # appears to be a bug in Aruba that causes output-checking tests to 
   # fail when running interactive programs. See
   # https://github.com/zaaanderson/glittery/issues/1 for details.
-
+  #
+ 
   Scenario: Installer uses script correctly
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I type "s!xH4tsy"
+    And  I close the stdin stream 
     Then the output should contain "Success!"
     And  the file "config/admin.yml" should contain: 
       """ 
@@ -24,7 +26,7 @@ Feature: Admin login info YAML generator
   Scenario: Installer tries to enter too short a username
     When I run `config/create_admin` interactively 
     And  I type "a"
-    And  I close the input stream 
+    And  I close the stdin stream 
     Then the output should contain: 
     """
     >> Username must be at least 6 characters
@@ -34,7 +36,7 @@ Feature: Admin login info YAML generator
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I type "a"
-    And  I close the input stream 
+    And  I close the stdin stream 
     Then the output should contain: 
     """ 
     >> Password must be at least 8 characters
@@ -42,11 +44,11 @@ Feature: Admin login info YAML generator
 
   Scenario: Outputting "Username: "
     When I run `config/create_admin` interactively
-    And  I close the input stream
+    And  I close the stdin stream
     Then the output should contain "Username: "
 
   Scenario: Outputting "Password: "
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
-    And  I close the input stream
+    And  I close the stdin stream
     Then the output should contain "Password: "

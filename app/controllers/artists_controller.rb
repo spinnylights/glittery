@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   def show
-    @artist = @@artist
+    @artist = Artist.only_artist
   end
   
   def edit
@@ -23,13 +23,12 @@ class ArtistsController < ApplicationController
 
   def update
     if params[:artist][:new_password]
-      if @@artist.authenticate(params[:artist][:password])
+      if Artist.only_artist(:authenticate, "params[:artist][:password]")
         if params[:artist][:new_password] == 
            params[:artist][:password_confirmation]
-          @@artist.password = params[:artist][:new_password]
-          @@artist.new_password = nil
-          @@artist.password_confirmation = nil
-          @@artist.save
+          Artist.only_artist(:password=, "params[:artist][:new_password]")
+          Artist.only_artist(:new_password=, "nil")
+          Artist.only_artist(:password_confirmation=, "nil")
           redirect_to edit_artist_path 
         else
           flash[:error] = 'New password does not match confirmation'
@@ -42,11 +41,10 @@ class ArtistsController < ApplicationController
     end
 
     if params[:artist][:name]
-      @@artist.name = params[:artist][:name]
-      @@artist.email = params[:artist][:email]
-      @@artist.site_title = params[:artist][:site_title]
-      @@artist.bio = params[:artist][:bio]
-      @@artist.save
+      Artist.only_artist(:name=, "params[:artist][:name]")
+      Artist.only_artist(:email=,"params[:artist][:email]")
+      Artist.only_artist(:site_title=, "params[:artist][:site_title]")
+      Artist.only_artist(:bio=, "params[:artist][:bio]")
       redirect_to edit_artist_path
     end
   end

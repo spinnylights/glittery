@@ -3,7 +3,11 @@ When /^I click Change Password$/ do
 end
 
 When /^enter my current password$/ do
-  fill_in 'Current password', with: 'iam2bearSk!n' 
+  fill_in 'Current password', with: 
+    File.open("config/admin.yml") do |file|
+      attributes = Psych.load(file)
+      attributes[:password]
+  end
 end
 
 When /^enter the password I want with confirmation$/ do

@@ -4,6 +4,7 @@ Feature: Artist changes password
   As the artist
   I want to change my password
 
+  @password_sensitive
   Scenario: Artist changes password correctly
     Given that I am on the main admin page (and thus logged in)
     When I click Change Password

@@ -1,7 +1,7 @@
 namespace :db do
   desc 'Fill database with artwork'
-  task populate: :environment do
-    bag_of_bags = Artwork.create!(name: 'Bag of Bags',
+  task populate_artwork: :environment do
+    bag_of_bags = Artwork.new(name: 'Bag of Bags',
                     description: 'A bag of rich bags.')
     bag_of_bags.image_file_name = "bag.jpg"
     bag_of_bags.save
@@ -9,7 +9,7 @@ namespace :db do
       image_url = "bag#{n+1}.jpg"
       name = Faker::Name.name
       description = 'A bag of rich bags.'
-      current_artwork = Artwork.create!(name: name,
+      current_artwork = Artwork.new(name: name,
                         description: description)
       current_artwork.image_file_name = image_url
       current_artwork.save

@@ -1,3 +1,3 @@
-When /^I close the input stream$/ do
+When /^I close the stdin stream$/ do
   @interactive.stdin.close
 end

@@ -4,6 +4,7 @@ Feature: Artist changes bio, name, email, and site title
   As the artist
   I want to modify my bio, name, email, and the title of my site
 
+  @password_sensitive
   Scenario: Artist changes bio, name, email, and site title
     Given that I am on the main admin page (and thus logged in) 
     When I click the Change Info link
