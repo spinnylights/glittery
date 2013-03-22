@@ -11,14 +11,6 @@ class Artist < ActiveRecord::Base
     self.remember_token = nil
   end
 
-  def login_setup
-    File.open("config/admin.yml") do |file|
-      attributes = Psych.load(file)
-      self.username = attributes[:username]
-      self.password = attributes[:password]
-    end
-    self.save
-  end
 
   # This method allows Artist to behave like a singleton class but
   # still inheret from ActiveRecord::Base.

@@ -1,6 +1,23 @@
 module SessionsHelper
+  def sign_in(admin, perm_flag = nil)
+    if perm_flag
+      cookies.permanent[:remember_token] = admin.remember_token
+    else
+      cookies[:remember_token] = admin.remember_token
+    end
+    current_admin = admin
+  end
 
-  def sign_in(admin)
-    cookies.permanent[:remember_token] = admin.remember_token
+  def signed_in?
+    !current_admin.nil?
+  end
+
+  def current_admin=(admin)
+    @current_admin = admin
+  end
+
+  def current_admin
+    @current_admin ||= 
+    Admin.find_by_remember_token(cookies[:remember_token])
   end
 end

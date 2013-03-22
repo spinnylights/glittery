@@ -3,19 +3,18 @@ class SessionsController < ApplicationController
     if signed_in?
       redirect_to edit_artist_path
     end
-    Artist.only_artist(:login_setup)
+
+    admin = Admin.new
+    admin.populate_attr_from_config
+    unless Admin.find_by_username(admin.username)
+      admin.save
+    end
   end
 
   def create
-    if Artist.only_artist && Artist.only_artist(:authenticate, 
-                                                params[:password]) 
-      Artist.only_artist(:create_remember_token)
-      if params[:remember_me]
-        cookies.permanent[:remember_token] = 
-        Artist.only_artist(:remember_token)
-      else
-        cookies[:remember_token] = Artist.only_artist(:remember_token)
-      end
+    admin = Admin.find_by_username(params[:username])
+    if admin && admin.authenticate(params[:password]) 
+      sign_in(admin, params[:remember_me])
       redirect_to edit_artist_path
     else
       flash.now[:error] = 'Wrong username/password'

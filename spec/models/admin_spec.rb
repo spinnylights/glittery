@@ -1,16 +1,14 @@
 require 'spec_helper'
 
 describe Admin do
-  before(:each) do
+  before do
     @admin =  Admin.new(username: 'whistley', password: 'g4tTer!no')
   end
 
   it { should respond_to(:username) }
   it { should respond_to(:password) }
-
-  it 'should generate a password digest at initialization' do
-   @admin.should respond_to(:password_digest)
-  end
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:remember_token) }
 
   describe 'validations' do
     it 'is valid with valid attributes' do
@@ -25,6 +23,11 @@ describe Admin do
 
       it 'is not valid with a username under six characters' do
         @admin.username = 'a' * 5
+        @admin.should_not be_valid
+      end
+      
+      it 'is not valid with a username that is only whitespace' do
+        @admin.username = " " * 6
         @admin.should_not be_valid
       end
     end
@@ -92,5 +95,10 @@ describe Admin do
         invalid_password_admin.should be_false
       end
     end
+  end
+
+  describe 'cookie setup', wip: true do
+    before  { @admin.save }
+    specify { @admin.remember_token.should_not be_blank }
   end
 end
