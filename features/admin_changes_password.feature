@@ -4,7 +4,8 @@ Feature: Admin changes password
   As the admin
   I want to change my password
 
-  Background: Logged in
+  @wip
+  Scenario: Logged in
     Given I am logged in as "whistlebags" with the password "f1nnicK!"
 
   Scenario: Admin changes password correctly
