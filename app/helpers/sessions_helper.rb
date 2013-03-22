@@ -1,5 +1,5 @@
 module SessionsHelper
-  def sign_in(admin, perm_flag = nil)
+  def sign_in(admin, perm_flag = false)
     if perm_flag
       cookies.permanent[:remember_token] = admin.remember_token
     else
