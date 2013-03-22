@@ -1,5 +1,12 @@
 Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |username, password|
-  let(:admin) { Admin.new(username, password) }
+  admin = Admin.create(username: username, password: password)
+
+  visit '/login'
+  fill_in 'Username', with: admin.username
+  fill_in 'Password', with: admin.password
+  click_button 'Log in' 
+
+  page.should have_text 'Administration'
 end
 
 When /^I click Change Password$/ do
