@@ -2,5 +2,4 @@
 <a href='/'>Edit Gallery</a>
 <%= link_to 'Change Password', password_admin_path %>
 <%= link_to 'Change Info', info_artist_path %>
-<%= button_to('Log out', {action: 'destroy', controller: 'sessions'}, 
-              {method: 'delete'}) %>
+<%= button_to('Log out', '/logout', method: 'delete') %>

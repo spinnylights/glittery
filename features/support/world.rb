@@ -18,10 +18,21 @@ module GeneralHelper
     click_button 'Submit'
   end
 
+  def wrong_username
+    'whistleybustley'
+  end
+
   def wrong_password
     'd$2dDjfsrif'
   end
 
+  def right_username
+    'bagsywagsy'
+  end
+
+  def right_password
+    'fj$djSaisid'
+  end
   def fill_change_password_form(current, new, confirm)
     fill_in 'Current password', with: current
     fill_in 'New password',     with: new
