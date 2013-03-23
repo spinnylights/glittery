@@ -45,6 +45,13 @@ module GeneralHelper
     fill_in 'Password', with: password
     click_button 'Log in'
   end
+
+  def log_out
+    visit '/login'
+    if page.has_content? 'Administration'
+      click_button 'Log out'
+    end
+  end
 end
 
 World(AdminHelper)
