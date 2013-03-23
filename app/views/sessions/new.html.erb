@@ -1,8 +1,4 @@
 <h2>Log in</h2>
-<% if Rails.env.development? %>
-  <%= debug(params) %>
-  <%= debug Artist.only_artist %>
-<% end %>
 <%= form_tag('/sessions', method: 'post') do %>
 <div id="fields">
   <%= label_tag :username %>

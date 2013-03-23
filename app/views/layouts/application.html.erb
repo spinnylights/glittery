@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= Artist.find_by_id(1).site_title %></title>
+  <title><%= site_title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <h1><%= Artist.find_by_id(1).site_title %></h1>
+    <h1><%= site_title %></h1>
 
     <%= link_to "bio", artist_path %>
 

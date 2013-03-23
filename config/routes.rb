@@ -1,14 +1,20 @@
 Glittery::Application.routes.draw do
   root to: 'artworks#index'
 
-  resources :artworks
-
-  resource  :artist do
+  resource :admin do
     member do
       get 'password'
+    end
+  end 
+
+  resource :artist do
+    member do
       get 'info'
     end
   end
+
+  resources :artworks
+
   resources :sessions, only: [:new, :create, :destroy]
 
   match 'login'  => 'sessions#new'

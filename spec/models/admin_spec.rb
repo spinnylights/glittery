@@ -66,6 +66,16 @@ describe Admin do
         @admin.should_not be_valid
       end
     end
+
+    context 'when username is already taken', wip: true do
+      let(:admin_dup) do
+        Admin.new(username: @admin.username, password: @admin.password)
+      end
+
+      before { @admin.save}
+
+      specify { admin_dup.should_not be_valid }
+    end
   end
 
   describe 'authentication' do 
@@ -124,6 +134,26 @@ describe Admin do
       it 'should allow setting artist attrs' do 
         @admin.artist.name.should == 'Fanny Wanny'
       end
+    end
+  end
+
+  describe 'external_config_admin class method' do
+    let(:external_admin) do
+      file = Psych.load(File.open('config/admin.yml'))
+      Admin.new(username: file[:username], password: file[:password])
+    end
+
+    it 'should return the admin specified in config/admin.yml' do
+      Admin.external_config_admin.username.should == external_admin.username
+    end 
+
+    it 'should generate the yml admin if it does not exist' do
+      Admin.external_config_admin.destroy
+      Admin.external_config_admin.username.should == external_admin.username
+    end
+
+    it 'should have an associated artist' do
+      Admin.external_config_admin.artist.should be_true
     end
   end
 end

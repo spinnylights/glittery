@@ -12,6 +12,11 @@ module SessionsHelper
     !current_admin.nil?
   end
 
+  def sign_out
+    current_admin = nil
+    cookies.delete(:remember_token)
+  end
+
   def current_admin=(admin)
     @current_admin = admin
   end
