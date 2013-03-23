@@ -4,10 +4,9 @@ Feature: Admin logs out
   As the admin
   I want to log out from the site's admin area
 
-  @password_sensitive
   Scenario: Admin logs out
-    Given that I am on the main admin page (and thus logged in)
-    When  I click 'Log out' 
+    Given I am logged in as "whistlebags" with the password "f1nnicK!"
+    When  I log out 
     Then  I should see a gallery section 
     And   I should not be able to edit anything
     And   /login should give me a login prompt

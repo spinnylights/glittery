@@ -5,10 +5,7 @@ Given /^that I have an admin account$/ do
 end
 
 Given /^I am not logged in$/ do
-  visit '/login'
-  if page.has_content? 'Administration'
-    click_button 'Log out'
-  end
+  log_out
 end
 
 When /^I enter the wrong credentials at the login prompt$/ do
