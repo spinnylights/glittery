@@ -2,6 +2,9 @@ class Artist < ActiveRecord::Base
   attr_accessible :bio, :email, :name, :username, :photo_url, :password,
    :password_confirmation, :remember_token, :site_title
   has_secure_password
+  belongs_to :admin, inverse_of: :artist
+
+  validates :admin_id, presence: true
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
