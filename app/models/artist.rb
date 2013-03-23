@@ -5,8 +5,8 @@ class Artist < ActiveRecord::Base
   validates :admin_id, presence: true
 
   before_save do |artist|
-    artist.name = ""
-    artist.bio = ""
-    artist.site_title = "Glittery"
+    artist.name = "" if artist.name == nil
+    artist.bio = "" if artist.bio == nil
+    artist.site_title = "Glittery" if artist.site_title == nil
   end
 end

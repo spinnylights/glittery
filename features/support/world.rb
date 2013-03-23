@@ -33,10 +33,27 @@ module GeneralHelper
   def right_password
     'fj$djSaisid'
   end
+
   def fill_change_password_form(current, new, confirm)
     fill_in 'Current password', with: current
     fill_in 'New password',     with: new
     fill_in 'Confirm password', with: confirm
+  end
+
+  def artist_name
+    'Whingy Basics'
+  end
+
+  def artist_email
+    'whingy@basics.org'
+  end
+
+  def artist_photo_url
+    '/artist/grangy.jpg'
+  end
+
+  def artist_bio
+    'I am interested in basic forms of whinging.'
   end
 
   def log_in(username, password)
