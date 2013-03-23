@@ -1,6 +1,7 @@
 class Admin < ActiveRecord::Base
   attr_accessible :password, :username
   has_secure_password
+  has_one :artist, inverse_of: :admin
 
   validates :username, presence: true, length: { minimum: 6 }
   VALID_PASSWORD_REGEX = /((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#\$\!]).{8,})/
@@ -8,6 +9,9 @@ class Admin < ActiveRecord::Base
                        format: { with: VALID_PASSWORD_REGEX }
 
   before_save :create_remember_token
+  before_save do |admin|
+    admin.create_artist
+  end
 
   def populate_attr_from_config 
     File.open("config/admin.yml") do |file|

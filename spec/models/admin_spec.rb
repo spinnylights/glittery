@@ -7,8 +7,6 @@ describe Admin do
 
   it { should respond_to(:username) }
   it { should respond_to(:password) }
-  it { should respond_to(:password_digest) }
-  it { should respond_to(:remember_token) }
 
   describe 'validations' do
     it 'is valid with valid attributes' do
@@ -71,10 +69,11 @@ describe Admin do
   end
 
   describe 'authentication' do 
-    before do 
-      @admin.save 
-    end
-    
+    before { @admin.save }
+
+    it { should respond_to(:password_digest) }
+    it { should respond_to(:remember_token) }
+
     let(:admin_found_copy) { Admin.find_by_username(@admin.username) }
 
     specify { @admin.should respond_to(:authenticate) }
@@ -97,8 +96,34 @@ describe Admin do
     end
   end
 
-  describe 'cookie setup', wip: true do
+  describe 'cookie setup' do
     before  { @admin.save }
     specify { @admin.remember_token.should_not be_blank }
+  end
+  
+  describe 'Artist associations' do
+    before { @admin.save }
+
+    specify { @admin.should respond_to(:artist) }
+
+    it 'should create an artist on save' do 
+      @admin.artist.class.should == Artist
+    end
+
+    specify 'its artist should be associated with it' do 
+      @admin.should == @admin.artist.admin
+    end
+
+    describe 'artist attr setting through admin' do
+      before do 
+        @artist = @admin.artist
+        @artist.name = 'Fanny Wanny'
+        @artist.save
+      end 
+
+      it 'should allow setting artist attrs' do 
+        @admin.artist.name.should == 'Fanny Wanny'
+      end
+    end
   end
 end
