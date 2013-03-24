@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323052046) do
+ActiveRecord::Schema.define(:version => 20130324004419) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -29,17 +29,20 @@ ActiveRecord::Schema.define(:version => 20130323052046) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
-    t.string   "photo_url"
     t.string   "email"
     t.text     "bio"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "new_password"
     t.string   "site_title"
     t.string   "username"
     t.integer  "admin_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "artists", ["remember_token"], :name => "index_artists_on_remember_token"

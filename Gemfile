@@ -22,6 +22,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'aruba'
   gem 'spork-rails'
+  gem 'xpath'
 end
 
 group :assets do

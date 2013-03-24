@@ -23,11 +23,8 @@ class ArtistsController < ApplicationController
 
   def update
     if params[:artist][:name]
-      Artist.only_artist(:name=, "params[:artist][:name]")
-      Artist.only_artist(:email=,"params[:artist][:email]")
-      Artist.only_artist(:site_title=, "params[:artist][:site_title]")
-      Artist.only_artist(:bio=, "params[:artist][:bio]")
-      redirect_to edit_artist_path
+      current_admin.artist.update_attributes(params[:artist])
+      redirect_to edit_admin_path
     end
   end
 end
