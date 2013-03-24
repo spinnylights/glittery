@@ -1,5 +1,7 @@
 class Artist < ActiveRecord::Base
-  attr_accessible :bio, :email, :name, :photo_url, :site_title
+  attr_accessible :bio, :email, :name, :photo, :site_title, 
+  has_attached_file(:photo, { url: '/artist/:filename' })
+
   belongs_to :admin, inverse_of: :artist
 
   validates :admin_id, presence: true

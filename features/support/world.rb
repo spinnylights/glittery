@@ -56,6 +56,10 @@ module GeneralHelper
     'I am interested in basic forms of whinging.'
   end
 
+  def artist_site_title
+    'Basic Whinging'
+  end
+
   def log_in(username, password)
     visit '/login'
     fill_in 'Username', with: username

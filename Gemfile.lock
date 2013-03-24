@@ -203,3 +203,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spork-rails
   uglifier (>= 1.0.3)
+  xpath
