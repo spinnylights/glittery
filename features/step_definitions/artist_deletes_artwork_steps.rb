@@ -1,12 +1,12 @@
-When /^I click Edit Gallery$/ do
+When /^I delete an artwork$/ do
+  visit '/admin/edit'
   click_link 'Edit Gallery'
-end
-
-When /^click delete under an artwork$/ do
-  page.find(:xpath, '//div[@id="Bag of Bags"]/a[@data-method="delete"]')
+  page.find(".//div[@id='#{artwork_name}']/a[@data-method='delete']")
            .click
 end
 
 Then /^the artwork should no longer be in the gallery$/ do
-  page.should_not have_text 'Bag of Bags'
+  admin = return_admin
+  page.should_not have_selector ".//div[@id='#{artwork_name}']"
+  admin.artist.artworks.find_by_name("#{artwork_name}").should be_nil
 end

@@ -13,6 +13,7 @@
 class Artwork < ActiveRecord::Base
   attr_accessible :description, :image, :name
   has_attached_file :image, { url: '/art/:filename' }
+  belongs_to :artist
 
   validates :image, attachment_presence: { if: :image, 
                       message: "^Please select an image to upload." }

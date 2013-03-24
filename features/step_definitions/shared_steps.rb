@@ -15,13 +15,29 @@ end
 
 Given /^that an admin has an artist with info$/ do
   admin = Admin.external_config_admin
-  artist = Admin.external_config_admin.artist
+  artist = admin.artist 
 
   artist.update_attributes(name: artist_name,
                            email: artist_email,
-                           photo_url: artist_photo_url,
                            bio: artist_bio).should be_true
+  artist.photo.instance_write(:file_name, 
+                              photo_url("artist", filename: true))
+  artist.photo.save.should be_true
+  artist.save.should be_true
   artist.name.should == artist_name
+
+  store_admin(admin)
+end
+
+Given /^I have artwork in the gallery/ do
+  admin = Admin.external_config_admin
+  artist = admin.artist
+  artwork = artist.artworks.new(name: artwork_name,
+                                description: artwork_description)
+  artwork.image.instance_write(:file_name,
+                              photo_url("artwork", filename: true))
+  artwork.image.save.should be_true
+  artwork.save.should be_true
 
   store_admin(admin)
 end
@@ -31,6 +47,6 @@ Then /^I should see the artist's correct info/ do
   page.should have_content artist_name
   page.should have_selector(".//a[@href='mailto:#{artist_email}']")
   page.should have_selector(".//img[contains(./@src, 
-                            '#{artist_photo_url}')]")
+                       '#{photo_url("artist", filename: true)}')]")
   page.should have_content artist_bio
 end
