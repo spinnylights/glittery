@@ -64,6 +64,14 @@ module GeneralHelper
     'A whistley thistley thistle.'
   end
 
+  def new_artwork_name
+    'Whisper'
+  end
+
+  def new_artwork_description
+    'A quiet whisper.'
+  end
+
   def photo_url(model, opts={filename: false} ) 
     case model
     when "artist"  then url = '/app/assets/images/grangy.jpg'
