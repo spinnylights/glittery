@@ -72,10 +72,18 @@ module GeneralHelper
     'A quiet whisper.'
   end
 
+  def clear_artworks
+    admin = return_admin
+    admin.artist.artworks.clear
+    admin.artist.artworks.empty?.should be_true
+  end
+
   def photo_url(model, opts={filename: false} ) 
     case model
-    when "artist"  then url = '/app/assets/images/grangy.jpg'
-    when "artwork" then url = '/app/assets/images/124658.jpg'
+    when "artist"  then url = Rails.root.to_s +
+                              '/app/assets/images/grangy.jpg'
+    when "artwork" then url = Rails.root.to_s +
+                              '/app/assets/images/124658.jpg'
     else raise ArgumentError, 
       "#{model} should be a model with a Paperclip attachment"
     end

@@ -1,31 +1,34 @@
-When /^click Add New Artwork$/ do
+When /^I add a new artwork$/ do
+  clear_artworks
+
+  visit '/'
   click_link 'Add New Artwork'
+  fill_in 'Name', with: artwork_name 
+  fill_in 'Description', with: artwork_description 
+  attach_file('Image', photo_url("artwork"))
+  click_button 'Submit'
 end
 
-When /^add a name for the artwork$/ do
-  fill_in 'Name', with: 'Piccary Habits'
+When /^I try to add an artwork without an image$/ do
+  clear_artworks
+
+  visit '/'
+  click_link 'Add New Artwork'
+  fill_in 'Name', with: artwork_name
+  fill_in 'Description', with: artwork_description
+  click_button 'Submit'
 end
 
-When /^add a description for the artwork$/ do
-  fill_in 'Description', with: 'The essence of piccary behaviors.'
+Then /^the artwork should appear in the gallery$/ do
+  page.should have_content artwork_name
+  page.should have_selector("//div[@id='#{artwork_name}']//img[contains(./@src, '#{photo_url("artwork", filename: true)}')]")
 end
 
-When /^select the artwork's image for uploading$/ do
-  attach_file('Image', '/Users/zonodon/Pictures/124658.jpg')
-end
-
-Then /^the artwork's name and image should appear in the gallery$/ do
-  page.should have_content 'Piccary Habits'
-  page.should have_selector(:xpath, 
-              '//div[@class="art"]//a//img[@alt="124658"]')
-end
-
-Then /^its name, image, and description should appear on its page$/ do
-  page.find(:xpath, 
-            '//div[@id="Piccary Habits"]/div[@class="image"]/a').click
-  page.should have_content 'Piccary Habits'
-  page.should have_selector(:xpath, '//img[@alt="124658"]')
-  page.should have_content 'The essence of piccary behaviors.'
+Then /^its info should appear on its page$/ do
+  find(".//div[@id='#{artwork_name}']/div[@class='image']/a").click
+  page.should have_content artwork_name
+  page.should have_selector("//img[contains(./@src, '#{photo_url("artwork", filename: true)}')]")
+  page.should have_content artwork_description
 end
 
 Then /^I should still be on the new artwork page$/ do
