@@ -5,7 +5,7 @@ Feature: Artist deletes artwork
   I want to delete an artwork from the database
 
   Scenario: Artist deletes an artwork 
-    Given that I am on the main admin page (and thus logged in)
-    When I click Edit Gallery
-    And click delete under an artwork
+    Given that I am logged in as an admin 
+    And   I have artwork in the gallery
+    When I delete an artwork
     Then the artwork should no longer be in the gallery

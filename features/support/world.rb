@@ -48,16 +48,34 @@ module GeneralHelper
     'whingy@basics.org'
   end
 
-  def artist_photo_url
-    '/artist/grangy.jpg'
-  end
-
   def artist_bio
     'I am interested in basic forms of whinging.'
   end
 
   def artist_site_title
     'Basic Whinging'
+  end
+
+  def artwork_name
+    'Whistley Thistley'
+  end
+
+  def artwork_description
+    'A whistley thistley thistle.'
+  end
+
+  def photo_url(model, opts={filename: false} ) 
+    case model
+    when "artist"  then url = '/app/assets/images/grangy.jpg'
+    when "artwork" then url = '/app/assets/images/124658.jpg'
+    else raise ArgumentError, 
+      "#{model} should be a model with a Paperclip attachment"
+    end
+    if opts[:filename]
+      return url[/\w+\.(jpg|gif|png)/]
+    else
+      url
+    end
   end
 
   def log_in(username, password)
