@@ -29,6 +29,9 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+# Requiring the mode of general helper methods.
+require Rails.root.to_s+'/features/support/general_helper'
+
 RSpec.configure do |config|
   # == Mock Framework
   #
@@ -46,4 +49,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  # Includes the module in /features/support/general_helper.rb.
+  config.include GeneralHelper 
 end

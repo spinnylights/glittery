@@ -19,17 +19,17 @@ end
 
 When /^I click on an artwork image$/ do
   visit '/'
-  find(:xpath, '//div[@class="image"]/a[@href="/artworks/1"]').click 
+  find(:xpath, './/div[@class="image"]//a').click 
 end
 
 Then /^I should see the artwork image$/ do
-  page.should have_selector(:xpath, '//img[@alt="Bag"]')
+  page.should have_selector('.//img[contains(./@src, "art")]')
 end
 
 Then /^I should see the name of the work$/ do
-  page.should have_text 'Bag of Bags'
+  page.should have_selector('.//div[@class="single_art"]/h2') 
 end
 
 Then /^I should see a description of the work$/ do
-  page.should have_text 'A bag of rich bags.'
+  page.should have_selector('.//div[@class="single_art"]/p')
 end

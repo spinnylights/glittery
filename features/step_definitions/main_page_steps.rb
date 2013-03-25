@@ -3,7 +3,7 @@ When /^I visit the main page$/ do
 end
 
 Then /^I should see a header$/ do
-  page.should have_selector 'h1'
+  page.should have_selector './/h1'
 end
 
 Then /^I should see a gallery section$/ do
@@ -11,5 +11,5 @@ Then /^I should see a gallery section$/ do
 end
 
 Then /^I should see a link to an artist bio$/ do
-  page.should have_selector('a', text: "bio")
+  page.should have_selector('.//a', text: "bio")
 end

@@ -13,8 +13,12 @@ describe Artist do
   it { should respond_to(:name) }
   it { should respond_to(:bio) }
   it { should respond_to(:email) }
-  it { should respond_to(:photo_url) }
+  it { should respond_to(:photo) }
   it { should respond_to(:site_title) }
+
+  it 'should have a Paperclip attachment' do
+    artist.photo.url.class.should == String
+  end
 
   describe 'attr defaults' do
     subject { artist }
@@ -29,7 +33,28 @@ describe Artist do
 
     context 'without an admin_id' do
       let(:wrong_artist) { Artist.new }
-      it { should_not be_valid }
+      specify { wrong_artist.should_not be_valid }
+    end
+  end
+
+  describe 'Artwork associations', wip: true do
+    let(:artwork) do 
+      artist.artworks.new(name: artwork_name, 
+                          description: artwork_description)
+    end
+
+    specify { artist.should respond_to(:artworks) }
+
+    describe 'dependent artwork destruction' do
+      before do
+        generate_artwork_for_admin(@admin)
+      end
+
+      specify do
+        artist.destroy
+
+        Artwork.find_by_name(artwork_name).should be_nil
+      end
     end
   end
 end

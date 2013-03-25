@@ -29,16 +29,9 @@ Given /^that an admin has an artist with info$/ do
   store_admin(admin)
 end
 
-Given /^I have artwork in the gallery/ do
+Given /^there is artwork in the gallery/ do
   admin = Admin.external_config_admin
-  artist = admin.artist
-  artwork = artist.artworks.new(name: artwork_name,
-                                description: artwork_description)
-  artwork.image.instance_write(:file_name,
-                              photo_url("artwork", filename: true))
-  artwork.image.save.should be_true
-  artwork.save.should be_true
-
+  generate_artwork_for_admin(admin)
   store_admin(admin)
 end
 

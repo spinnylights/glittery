@@ -6,6 +6,6 @@ Feature: Artist edits artwork
 
   Scenario: Artist edits artwork properly
     Given that I am logged in as an admin 
-    And   I have artwork in the gallery
+    And   there is artwork in the gallery
     When I edit an artwork
     Then the artwork's info should be changed
