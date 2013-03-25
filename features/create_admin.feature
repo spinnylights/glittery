@@ -14,42 +14,47 @@ Feature: Admin login info YAML generator
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I type "s!xH4tsy"
-    And  I close the stdin stream 
-    Then the output should contain "Success!"
-    And  the file "config/admin.yml" should contain: 
+    And  I close the stdin stream
+    Then it should pass with:
+      """
+      Success!
+      """
+    And the exit status should be 0
+    And the file "config/admin.yml" should contain: 
       """ 
       ---
       !ruby/sym username: roseyrangoon
       !ruby/sym password: s!xH4tsy
       """
 
+  @wip
   Scenario: Installer tries to enter too short a username
     When I run `config/create_admin` interactively 
     And  I type "a"
     And  I close the stdin stream 
-    Then the output should contain: 
-    """
-    >> Username must be at least 6 characters
-    """
+    Then it should fail with: 
+      """
+      >> Username must be at least 6 characters
+      """
 
   Scenario: Installer tries to enter a username that is only whitespace
     When I run `config/create_admin` interactively
     And  I type "       "
     And  I close the stdin stream
-    Then the output should contain:
-    """
-    >> Username must contain at least one non-whitespace character.
-    """
+    Then it should fail with:
+      """
+      >> Username must contain at least one non-whitespace character.
+      """
 
   Scenario: Installer tries to enter too short a password
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I type "a"
     And  I close the stdin stream 
-    Then the output should contain: 
-    """ 
-    >> Password must be at least 8 characters
-    """
+    Then it should fail with: 
+      """ 
+      >> Password must be at least 8 characters
+      """
 
   # Invalid password regexp is fully tested in 
   # spec/models/artist_spec.rb.
@@ -59,18 +64,29 @@ Feature: Admin login info YAML generator
     And  I type "roseyrangoon"
     And  I type "g4tter!no"
     And  I close the stdin stream
-    Then the output should contain:
-    """
-    >> Password must contain at least one lowercase letter, at least one \n   capital letter, and at least one of the following: @#!$.
-    """
+    Then it should fail with:
+      """
+      >> Password must contain at least
+      """
 
   Scenario: Outputting "Username: "
     When I run `config/create_admin` interactively
     And  I close the stdin stream
-    Then the output should contain "Username: "
+    Then it should fail with:
+      """
+      Username:
+      """
 
   Scenario: Outputting "Password: "
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I close the stdin stream
-    Then the output should contain "Password: "
+    Then it should fail with: 
+      """ 
+      Password: 
+      """
+
+  Scenario: Exiting prematurely
+    When I run `config/create_admin` interactively
+    And  I type "ExIt"
+    Then the exit status should be 1

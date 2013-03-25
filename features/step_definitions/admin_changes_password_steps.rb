@@ -34,6 +34,16 @@ Then /^I should be able to log in with my new password$/ do
   page.should have_text 'Administration'
 end
 
+Then /^my new password should be reflected in the external config$/ do
+  admin = return_admin
+
+  File.open(Rails.root.to_s+'/config/admin.yml') do |file|
+    attributes = Psych.load(file)
+    attributes[:username].should == admin.username
+    attributes[:password].should == admin.password
+  end
+end
+
 Then /^I should still be on the Change Password page$/ do
   page.should have_text 'Change Password'
 end
