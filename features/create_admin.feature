@@ -32,6 +32,15 @@ Feature: Admin login info YAML generator
     >> Username must be at least 6 characters
     """
 
+  Scenario: Installer tries to enter a username that is only whitespace
+    When I run `config/create_admin` interactively
+    And  I type "       "
+    And  I close the stdin stream
+    Then the output should contain:
+    """
+    >> Username must contain at least one non-whitespace character.
+    """
+
   Scenario: Installer tries to enter too short a password
     When I run `config/create_admin` interactively
     And  I type "roseyrangoon"
@@ -40,6 +49,19 @@ Feature: Admin login info YAML generator
     Then the output should contain: 
     """ 
     >> Password must be at least 8 characters
+    """
+
+  # Invalid password regexp is fully tested in 
+  # spec/models/artist_spec.rb.
+
+  Scenario: Installer tries to enter an invalid password
+    When I run `config/create_admin` interactively
+    And  I type "roseyrangoon"
+    And  I type "g4tter!no"
+    And  I close the stdin stream
+    Then the output should contain:
+    """
+    >> Password must contain at least one lowercase letter, at least one \n   capital letter, and at least one of the following: @#!$.
     """
 
   Scenario: Outputting "Username: "
