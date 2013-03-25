@@ -8,19 +8,29 @@ def auth_loop(attribute,length_minimum)
   while true
     print "#{attr_hash.keys.first.to_s.capitalize}: "
     attr_hash[attribute] = gets.chomp
-    if attr_hash[attribute].size < length_minimum
+
+    if attr_hash[attribute].downcase == "exit" || 
+    attr_hash[attribute].downcase == "quit"
+      puts ">> No admin created.".bright
+      exit 1
+
+    elsif attr_hash[attribute].size < length_minimum
       puts ">> #{attr_hash.keys.first.to_s.capitalize} must be at \
 least #{length_minimum} characters".bright
+
     elsif attr_hash[attribute].lstrip == ""
       puts ">> #{attr_hash.keys.first.to_s.capitalize} must contain \
 at least one non-whitespace character.".bright
-    elsif attribute == :password 
-      unless attr_hash[attribute] =~
+
+    elsif attribute == :password && attr_hash[attribute] !~
         /((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#\$\!]).{8,})/
-        puts ">> Password must contain at least one lowercase letter, \
-at least one \n   capital letter, and at least one of the following: @#!$."
+        print <<-EOE
+>> Password must contain at least one lowercase letter,
+   at least one capital letter, at least one number, and 
+   at least one of the following: @#!$.
+EOE
 .bright
-      end
+
     else
       break
     end
@@ -37,5 +47,6 @@ File.open("config/admin.yml", "w") do |file|
   attributes.each do |key, value|
     file.puts "!ruby/sym #{key}: #{value}"
   end
-  print "Success!".bright
+  puts "Success!".bright
+  exit 0
 end

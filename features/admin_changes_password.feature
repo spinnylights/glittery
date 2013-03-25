@@ -7,7 +7,6 @@ Feature: Admin changes password
   Background: Logged in
     Given I am logged in as "whistlebags" with the password "f1nnicK!"
 
-    @wip
   Scenario: Admin changes password correctly
     When I properly change my password to "t4gR@tzo" 
     Then I should be on the Administration page
