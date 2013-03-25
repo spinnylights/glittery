@@ -11,6 +11,16 @@ def auth_loop(attribute,length_minimum)
     if attr_hash[attribute].size < length_minimum
       puts ">> #{attr_hash.keys.first.to_s.capitalize} must be at \
 least #{length_minimum} characters".bright
+    elsif attr_hash[attribute].lstrip == ""
+      puts ">> #{attr_hash.keys.first.to_s.capitalize} must contain \
+at least one non-whitespace character.".bright
+    elsif attribute == :password 
+      unless attr_hash[attribute] =~
+        /((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#\$\!]).{8,})/
+        puts ">> Password must contain at least one lowercase letter, \
+at least one \n   capital letter, and at least one of the following: @#!$."
+.bright
+      end
     else
       break
     end
