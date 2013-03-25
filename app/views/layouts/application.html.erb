@@ -5,11 +5,17 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="<%= Rails.root.to_s + 
+    'app/assets/javascripts/html5shiv.js' %>"</script>
+  <![endif]-->
 </head>
 <body>
+  <header>
     <h1><%= site_title %></h1>
 
     <%= link_to "bio", artist_path %>
+  </header>
 
     <div class="flash_box">
       <% flash.each do |key, value| %>

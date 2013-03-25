@@ -32,9 +32,7 @@ class ArtworksController < ApplicationController
 
   def update
     @artwork = Artwork.find_by_id(params[:id])
-    @artwork.name =  params[:artwork][:name]
-    @artwork.description = params[:artwork][:description]
-    @artwork.save
+    @artwork.update_attributes(params[:artwork])
     redirect_to '/'
   end
 

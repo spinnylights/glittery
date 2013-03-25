@@ -1,5 +1,6 @@
 Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |username, password|
-  admin = Admin.create(username: username, password: password)
+  admin = Admin.create(username: username, password: password,
+                       password_confirmation: password)
 
   log_in(admin.username, admin.password)
   page.should have_text 'Administration'

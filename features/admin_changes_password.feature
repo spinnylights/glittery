@@ -13,14 +13,14 @@ Feature: Admin changes password
     And  I should be able to log in with my new password
     And  my new password should be reflected in the external config
 
-  Scenario: Admin enters current password incorrectly
-    When I enter the wrong current password in the form
-    Then I should still be on the Change Password page
-    And  I should be told that I entered my current password wrong
-    And  I should not be able to log in with my new password
-
   Scenario: Admin's new password and password confirmation don't match
     When I enter the wrong confirmation password in the form
     Then I should still be on the Change Password page
     And  I should be told that my passwords don't match
     And  I should not be able to log in with my new password
+
+    @wip
+  Scenario: Admin enters an invalid password
+    When I enter an invalid new password
+    Then I should still be on the Change Password page
+    And  I should be told that my password is invalid

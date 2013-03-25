@@ -24,8 +24,7 @@ module GeneralHelper
     'fj$djSaisid'
   end
 
-  def fill_change_password_form(current, new, confirm)
-    fill_in 'Current password', with: current
+  def fill_change_password_form(new, confirm)
     fill_in 'New password',     with: new
     fill_in 'Confirm password', with: confirm
   end

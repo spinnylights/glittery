@@ -1,25 +1,23 @@
 When /^I properly change my password to "(.*?)"$/ do |new_password|
   admin = return_admin
   visit_change_password
-  fill_change_password_form(admin.password, new_password, 
-                            new_password)
+  fill_change_password_form(new_password, new_password)
   submit_form
   admin.password = new_password
   store_admin(admin)
 end
 
-When /^I enter the wrong current password in the form$/ do
- visit_change_password
- fill_change_password_form(wrong_password, wrong_password,
-                           wrong_password)
- submit_form
-end
-
 When /^I enter the wrong confirmation password in the form$/ do
   admin = return_admin
   visit_change_password
-  fill_change_password_form(admin.password, 'iam2bearH@nds', 
-                            wrong_password)
+  fill_change_password_form('iam2bearH@nds', wrong_password)
+  submit_form
+end
+
+When /^I enter an invalid new password$/ do
+  admin = return_admin
+  visit_change_password
+  fill_change_password_form('d' * 8, 'd' * 8)  
   submit_form
 end
 
@@ -48,10 +46,6 @@ Then /^I should still be on the Change Password page$/ do
   page.should have_text 'Change Password'
 end
 
-Then /^I should be told that I entered my current password wrong$/ do
-  page.should have_text 'Wrong current password'
-end
-
 Then /^I should not be able to log in with my new password$/ do
   admin = return_admin
   click_link 'Back'
@@ -62,5 +56,10 @@ Then /^I should not be able to log in with my new password$/ do
 end
 
 Then /^I should be told that my passwords don't match$/ do
-  page.should have_text "New password does not match confirmation"
+  page.should have_text "doesn't match confirmation"
+end
+
+Then /^I should be told that my password is invalid$/ do
+  page.should have_text 'Change Password'
+  page.should have_text 'Password must contain at least one'
 end

@@ -1,6 +1,9 @@
-<% if signed_in? %>
-<%= link_to 'Add New Artwork', new_artwork_path %>
-<% end %>
+<nav>
+  <% if signed_in? %>
+    <%= link_to 'Add New Artwork', new_artwork_path %><br>
+    <%= link_to 'Settings', edit_admin_path %>
+  <% end %>
+</nav>
 <div id="gallery">
   <% @artworks.each do |artwork| %>
     <div class="art">
