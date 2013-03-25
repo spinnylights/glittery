@@ -7,11 +7,7 @@ Glittery::Application.routes.draw do
     end
   end 
 
-  resource :artist do
-    member do
-      get 'info'
-    end
-  end
+  resource :artist
 
   resources :artworks
 

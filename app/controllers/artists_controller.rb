@@ -9,22 +9,11 @@ class ArtistsController < ApplicationController
     end
   end
 
-  def password
-    if !signed_in?
-      redirect_to '/login'
-    end
-  end
-
-  def info
-    if !signed_in?
-      redirect_to '/login'
-    end
-  end
-
   def update
-    if params[:artist][:name]
-      current_admin.artist.update_attributes(params[:artist])
+    if current_admin.artist.update_attributes(params[:artist])
       redirect_to edit_admin_path
+    else
+      render 'edit'
     end
   end
 end

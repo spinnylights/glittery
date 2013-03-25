@@ -29,6 +29,32 @@ describe Artist do
     its(:site_title) { artist.site_title.class.should == String }
   end
 
+  describe 'validations' do
+    it 'should be valid without information' do
+      artist.should be_valid
+    end
+
+    describe 'for email' do
+      it 'should be invalid with a bad format' do
+        emails = %w[bigsy@bax,com bigsy_at_large.bags bigsy.wigsy@bax.
+                    fishy@bax_bags.com bigsy@bax+fish.com]
+        emails.each do |bad_email|
+          artist.email = bad_email
+          artist.should_not be_valid
+        end
+      end
+
+      it 'should be valid with a good format' do
+        emails = %w[bigsy@bax.COM B_IG-SY@ba.x.net fishy.bags@fish.es 
+                    b+a@bax.museum]
+        emails.each do |good_email|
+          artist.email = good_email
+          artist.should be_valid
+        end
+      end
+    end
+  end
+
   describe 'Admin associations' do
     specify { artist.should respond_to(:admin) } 
 
@@ -38,7 +64,7 @@ describe Artist do
     end
   end
 
-  describe 'Artwork associations', wip: true do
+  describe 'Artwork associations' do
     let(:artwork) do 
       artist.artworks.new(name: artwork_name, 
                           description: artwork_description)

@@ -1,0 +1,7 @@
+<% if current_admin.errors.any? %>
+  <div id="errors">
+    <% current_admin.errors.full_messages.uniq.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %> 

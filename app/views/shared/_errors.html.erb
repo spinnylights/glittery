@@ -1,0 +1,7 @@
+<% if instance.errors.any? %>
+  <div id="errors">
+    <% instance.errors.full_messages.uniq.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %> 

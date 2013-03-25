@@ -19,7 +19,6 @@ Feature: Admin changes password
     And  I should be told that my passwords don't match
     And  I should not be able to log in with my new password
 
-    @wip
   Scenario: Admin enters an invalid password
     When I enter an invalid new password
     Then I should still be on the Change Password page
