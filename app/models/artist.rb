@@ -1,9 +1,9 @@
 class Artist < ActiveRecord::Base
   attr_accessible :bio, :email, :name, :photo, :site_title, 
   has_attached_file(:photo, { url: '/artist/:filename' })
-  has_many :artworks, dependent: :destroy
 
   belongs_to :admin, inverse_of: :artist
+  has_many :artworks, dependent: :destroy
 
   validates :admin_id, presence: true
 

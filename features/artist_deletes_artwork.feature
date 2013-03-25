@@ -6,6 +6,6 @@ Feature: Artist deletes artwork
 
   Scenario: Artist deletes an artwork 
     Given that I am logged in as an admin 
-    And   I have artwork in the gallery
+    And   there is artwork in the gallery
     When I delete an artwork
     Then the artwork should no longer be in the gallery
