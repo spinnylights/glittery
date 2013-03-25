@@ -1,5 +1,8 @@
 <%= image_tag(@artwork.image) %>
 <%= form_for @artwork, url: { action: 'update' } do |a| %>
+  <%= a.label      :image %>
+  <%= a.file_field :image %><br>
+
   <%= a.label      :name %>
   <%= a.text_field :name %><br>
 
@@ -8,4 +11,4 @@
 
   <%= a.submit 'Submit' %>
 <% end %>
-<%= link_to 'Back', '/' %>
+<%= link_to 'back', '/' %>

@@ -27,7 +27,6 @@ Feature: Admin login info YAML generator
       !ruby/sym password: s!xH4tsy
       """
 
-  @wip
   Scenario: Installer tries to enter too short a username
     When I run `config/create_admin` interactively 
     And  I type "a"

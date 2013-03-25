@@ -1,6 +1,7 @@
 Given /^that I have an admin account$/ do
   admin = Admin.create(username: right_username, 
-                       password: right_password)
+                       password: right_password,
+                       password_confirmation: right_password)
   store_admin(admin)
 end
 

@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Admin do
   before do
-    @admin =  Admin.new(username: 'whistley', password: 'g4tTer!no')
+    @admin =  Admin.new(username: 'whistley', password: 'g4tTer!no',
+                        password_confirmation: 'g4tTer!no')
   end
 
   it { should respond_to(:username) }
@@ -67,9 +68,23 @@ describe Admin do
       end
     end
 
+    describe 'for :password_confirmation', wip: true do
+      it 'is not valid without password confirmation' do
+        @admin.password_confirmation = nil
+        @admin.should_not be_valid
+      end
+
+      it 'is not valid without matching password confirmation' do
+        @admin.password_confirmation = "d@D#fjdfjr"
+        @admin.should_not be_valid
+      end
+    end
+
     context 'when username is already taken', wip: true do
       let(:admin_dup) do
-        Admin.new(username: @admin.username, password: @admin.password)
+        Admin.new(username: @admin.username, 
+                  password: @admin.password,
+                  password_confirmation: @admin.password)
       end
 
       before { @admin.save}
@@ -140,7 +155,9 @@ describe Admin do
   describe 'external_config_admin class method' do
     let(:external_admin) do
       file = Psych.load(File.open('config/admin.yml'))
-      Admin.new(username: file[:username], password: file[:password])
+      Admin.new(username: file[:username], 
+                password: file[:password],
+                password_confirmation: file[:password])
     end
 
     it 'should return the admin specified in config/admin.yml' do

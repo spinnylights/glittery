@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Artwork do
   before do
     @admin = Admin.create(username: 'wishywashy',
-                          password: 'df#4jF9d')
+                          password: 'df#4jF9d',
+                          password_confirmation: 'df#4jF9d')
   end
   
   let(:artwork) { generate_artwork_for_admin(@admin) }
@@ -21,7 +22,7 @@ describe Artwork do
   end
 
   describe 'validations' do
-    describe 'it should not be valid without an attached image' do
+    context 'without an attached image' do
       let(:invalid_artwork) do
         Artwork.new(name: 'Whiasakas', description: 'Polar ice.')
       end

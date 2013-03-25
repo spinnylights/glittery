@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe Artist do
   before do
-    @admin = Admin.create(username: "wishywashyfishes", password:
-                       "fjJ#as0#4F")
+    @admin = Admin.create(username: "wishywashyfishes", 
+                          password: "fjJ#as0#4F",
+                          password_confirmation: "fjJ#as0#4F")
   end
 
   let(:artist) { @admin.artist }
@@ -50,7 +51,7 @@ describe Artist do
         generate_artwork_for_admin(@admin)
       end
 
-      specify do
+      specify 'destroying the artist should destroy its artwork' do
         artist.destroy
 
         Artwork.find_by_name(artwork_name).should be_nil
