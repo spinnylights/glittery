@@ -1,5 +1,23 @@
-<h2>Administration</h2>
-<a href='/'>Edit Gallery</a>
-<%= link_to 'Change Password', password_artist_path %>
-<%= link_to 'Change Info', info_artist_path %>
-<%= button_to('Log out', {action: 'destroy', controller: 'sessions'}, {method: 'delete'}) %>
+<h3>Change Info</h3>
+<%= form_for current_admin.artist, url: { action: 'update' } do |a| %>
+  <%= render partial: 'shared/errors', 
+  locals: { instance: current_admin.artist }  %>
+
+  <%= a.label      :name %>
+  <%= a.text_field :name %><br>
+
+  <%= a.label      :email %>
+  <%= a.text_field :email %><br>
+
+  <%= a.label      :site_title %>
+  <%= a.text_field :site_title %><br>
+
+  <%= a.label      :photo %>
+  <%= a.file_field :photo %><br>
+
+  <%= a.label      :bio %>
+  <%= a.text_field :bio %><br>
+
+  <%= a.submit 'Submit' %>
+<% end %>
+<%= link_to 'Back', edit_admin_path %>

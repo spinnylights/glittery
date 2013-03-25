@@ -7,18 +7,18 @@ class Admin < ActiveRecord::Base
  
   validates :username, presence: true, 
                        length: { minimum: 6, 
-        too_short: "must be at least %{count} characters." }, 
+        too_short: "must be at least %{count} characters" }, 
                        uniqueness: true
 
   VALID_PASSWORD_REGEX = 
   /((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#\$\!]).{8,})/
 
   validates :password, presence: true, length: { minimum: 8,
-        too_short: "must be at least %{count} characters." }, 
+        too_short: "must be at least %{count} characters" }, 
                        format: { with: VALID_PASSWORD_REGEX,
  message: "must contain at least one lowercase letter, at 
  least one capital letter, at least one number, and at least one of 
- the following: @#!$."},
+ the following: @#!$"},
                        confirmation: true
 
   validates :password_confirmation, presence: true

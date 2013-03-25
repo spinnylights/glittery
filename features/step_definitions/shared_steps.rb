@@ -17,16 +17,7 @@ end
 Given /^that an admin has an artist with info$/ do
   admin = Admin.external_config_admin
   artist = admin.artist 
-
-  artist.update_attributes(name: artist_name,
-                           email: artist_email,
-                           bio: artist_bio).should be_true
-  artist.photo.instance_write(:file_name, 
-                              photo_url("artist", filename: true))
-  artist.photo.save.should be_true
-  artist.save.should be_true
-  artist.name.should == artist_name
-
+  populate_artist_info(artist)
   store_admin(admin)
 end
 

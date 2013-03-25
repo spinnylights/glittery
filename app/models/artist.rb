@@ -6,6 +6,9 @@ class Artist < ActiveRecord::Base
   has_many :artworks, dependent: :destroy
 
   validates :admin_id, presence: true
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX }, unless: "email.blank?"
 
   before_save do |artist|
     artist.name = "" if artist.name == nil

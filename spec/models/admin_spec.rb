@@ -68,7 +68,7 @@ describe Admin do
       end
     end
 
-    describe 'for :password_confirmation', wip: true do
+    describe 'for :password_confirmation' do
       it 'is not valid without password confirmation' do
         @admin.password_confirmation = nil
         @admin.should_not be_valid
@@ -80,7 +80,7 @@ describe Admin do
       end
     end
 
-    context 'when username is already taken', wip: true do
+    context 'when username is already taken' do
       let(:admin_dup) do
         Admin.new(username: @admin.username, 
                   password: @admin.password,

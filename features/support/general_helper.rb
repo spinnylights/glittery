@@ -29,6 +29,17 @@ module GeneralHelper
     fill_in 'Confirm password', with: confirm
   end
 
+  def populate_artist_info(artist)
+    artist.update_attributes(name: artist_name,
+                             email: artist_email,
+                             bio: artist_bio).should be_true
+    artist.photo.instance_write(:file_name, 
+                                photo_url("artist", filename: true))
+    artist.photo.save.should be_true
+    artist.save.should be_true
+    artist.name.should == artist_name
+  end
+
   def artist_name
     'Whingy Basics'
   end
