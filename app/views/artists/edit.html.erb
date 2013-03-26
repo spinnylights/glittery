@@ -1,5 +1,6 @@
-<h3>Change Info</h3>
-<%= form_for current_admin.artist, url: { action: 'update' } do |a| %>
+<h2>Change Info</h2>
+<%= form_for current_admin.artist, url: { action: 'update' }, html: 
+  { class: "form" } do |a| %>
   <%= render partial: 'shared/errors', 
   locals: { instance: current_admin.artist }  %>
 
@@ -14,10 +15,14 @@
 
   <%= a.label      :photo %>
   <%= a.file_field :photo %><br>
-
+ 
+<div class="text">
   <%= a.label      :bio %>
-  <%= a.text_field :bio %><br>
+  <%= a.text_area :bio %><br>
+</div>
 
-  <%= a.submit 'Submit' %>
+<div class="submit">
+  <%= a.submit 'Submit'%><br>
+</div>
 <% end %>
-<%= link_to 'Back', edit_admin_path %>
+<%= link_to 'back', edit_admin_path %>

@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
 
     admin = Admin.new
     admin.populate_attr_from_config
-    unless Admin.find_by_username(admin.username)
+    unless admin.save 
+      admin = Admin.find_by_username(admin.username)
+      admin.populate_attr_from_config
       admin.save
     end
   end

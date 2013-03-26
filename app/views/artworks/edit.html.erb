@@ -1,10 +1,11 @@
-<%= image_tag(@artwork.image) %>
-<%= form_for @artwork, url: { action: 'update' } do |a| %>
-  <%= a.label      :image %>
-  <%= a.file_field :image %><br>
-
+<%= image_tag(@artwork.image, id: 'edit_artwork_image') %>
+<%= form_for @artwork, url: { action: 'update' }, 
+  html: { class: 'artwork_form' } do |a| %>
   <%= a.label      :name %>
   <%= a.text_field :name %><br>
+
+  <%= a.label      :image %>
+  <%= a.file_field :image %><br>
 
   <%= a.label      :description %><br>
   <%= a.text_area  :description, size: '50x15' %><br>
