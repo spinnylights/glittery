@@ -9,6 +9,7 @@ gem 'paperclip', '~> 3.0'
 gem 'rmagick'
 gem 'dynamic_form'
 gem 'rainbow'
+gem 'psych'
 
 group :development do
   gem 'annotate'
