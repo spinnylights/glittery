@@ -1,6 +1,8 @@
-<div class="single_art">
+<div id="single_art">
   <h2><%= @artwork.name %></h2>
   <%= image_tag @artwork.image.url %>
-  <p><%= @artwork.description %>
-</div>
+  <div id="description_of_artwork">
+    <%= simple_format h( @artwork.description ) %>
+  </div>
 <a href="/">back</a>
+</div>

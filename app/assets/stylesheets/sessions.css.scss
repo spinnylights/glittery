@@ -1,3 +1,19 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#login {
+  line-height: 180%;
+
+  #login_fields {
+    text-align: right;
+    width: 224px;
+    margin: 0 auto;
+    padding: 7px 57px 2px 0;
+    line-height: 210%;
+  }
+
+  input[type=submit] {
+    margin-top: 8px;
+  }
+}

@@ -3,7 +3,29 @@
 html {
   background: black;
   text-align: center;
-  color: white
+  color: white;
+  overflow-y: scroll;
+}
+
+header {
+  padding-bottom: 15px;
+}
+
+.form {
+  margin: 0 auto 0 auto;
+  width: 285px;
+  text-align: right;
+  padding: 1.4em 51px 1.4em 0;
+}
+
+.form input {
+  margin: 7px 0 7px 3px; 
+}
+
+.text, .submit {
+  text-align: center;
+  width: 332px;
+  padding-top: 5px
 }
 
 /* typography */

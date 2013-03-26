@@ -11,10 +11,10 @@
   <![endif]-->
 </head>
 <body>
-  <header>
+  <header id="header">
     <h1><%= site_title %></h1>
 
-  <% unless artist_has_no_info? %>
+  <% unless artist_has_no_info? || request.fullpath == '/artist' %>
     <%= link_to "bio", artist_path %>
   <% end %>
   </header>

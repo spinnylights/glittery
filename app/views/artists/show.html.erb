@@ -2,16 +2,16 @@
   <% unless @artist.name == "" %>
     <h2 id="name"><%= @artist.name %></h2>
   <% end %>
-  <% unless @artist.email.blank? %>
-    <span id="email">
-      <%= link_to "contact", "mailto:#{@artist.email}" %>
-    </span><br>
-  <% end %>
   <% unless @artist.photo_file_name == nil %>
     <%= image_tag @artist.photo.url %>
   <% end %>
   <% unless @artist.bio == "" %>
-    <p id="bio"><%= @artist.bio %></p>
+    <div id="bio"><%= simple_format h( @artist.bio ) %></div>
+  <% end %>
+  <% unless @artist.email.blank? %>
+    <p id="email">
+      <%= link_to "contact me", "mailto:#{@artist.email}" %>
+    </p><br>
   <% end %>
   <a href="/">back</a>
 </div>

@@ -1,16 +1,14 @@
 <h2>Log in</h2>
-<%= form_tag('/sessions', method: 'post') do %>
-<div id="fields">
+<%= form_tag('/sessions', method: 'post', id: "login") do %>
+<div id="login_fields">
   <%= label_tag :username %>
-  <%= text_field_tag :username %><br>
+  <%= text_field_tag :username, nil %><br>
 
   <%= label_tag :password %>
-  <%= text_field_tag :password %><br>
-
+  <%= password_field_tag :password, nil %><br>
+</div>
   <%= check_box_tag :remember_me, 1, params[:remember_me] %>
   <%= label_tag :remember_me %><br>
-</div>
-<div id="log_in">
+
   <%= submit_tag 'Log in' %>
-</div>
 <% end %>

@@ -44,6 +44,7 @@ class Admin < ActiveRecord::Base
       attributes = Psych.load(file)
       self.username = attributes[:username]
       self.password = attributes[:password]
+      self.password_confirmation = attributes[:password]
     end
   end
  

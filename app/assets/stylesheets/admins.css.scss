@@ -1,3 +1,18 @@
 // Place all the styles related to the Admins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.toolkit {
+  padding: 1.5em 0 2.1em;
+  line-height: 140%;
+}
+
+#change_password {
+  padding-right: 178px;
+  width: 416px;
+}
+
+#change_password .submit {
+  width: 590px;
+  padding-top: 10px;
+}

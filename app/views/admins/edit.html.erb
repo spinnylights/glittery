@@ -1,5 +1,9 @@
 <h2>Administration</h2>
+<div class="toolkit">
 <a href='/'>Edit Gallery</a><br>
 <%= link_to 'Change Info', edit_artist_path %><br>
 <%= link_to 'Change Password', password_admin_path %><br>
+</div>
+<div id="logout">
 <%= button_to('Log out', '/logout', method: 'delete') %>
+</div>
