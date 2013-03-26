@@ -4,6 +4,7 @@ doc/
 .project
 .DS_store
 bundler_stubs/
+config/admin.yml
 
 # github/gitignore/Rails.gitignore
 
