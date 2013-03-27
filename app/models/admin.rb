@@ -32,25 +32,6 @@ class Admin < ActiveRecord::Base
 
   after_create :create_artist
 
-#  after_save do |admin|
-#    File.open("config/admin.yml", "w") do |file|
-#      file.puts "---"
-#      file.puts "!ruby/sym username: #{admin.username}"
-#      file.puts "!ruby/sym password: #{admin.password}"
-#    end
-#  end
-
-  # Instance methods:
-
-  def populate_attr_from_config 
-    File.open("config/admin.yml") do |file|
-      attributes = Psych.load(file)
-      self.username = attributes[:username]
-      self.password = attributes[:password]
-      self.password_confirmation = attributes[:password]
-    end
-  end
- 
   # Class methods:
  
   def self.external_config_admin
