@@ -48,7 +48,7 @@ end
 
 Then /^I should not be able to log in with my new password$/ do
   admin = return_admin
-  click_link 'Back'
+  click_link 'back'
   click_button 'Log out'
   log_in(admin.username, wrong_password)
   page.should have_text 'Log in'

@@ -5,7 +5,7 @@ Feature: Admin logs out
   I want to log out from the site's admin area
 
   Scenario: Admin logs out
-    Given I am logged in as "whistlebags" with the password "f1nnicK!"
+    Given that I am logged in as an admin
     When  I log out 
     Then  I should see a gallery section 
     And   I should not be able to edit anything

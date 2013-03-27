@@ -30,8 +30,9 @@ Capybara.default_selector = :xpath
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-# Requiring the mode of general helper methods.
+# Requiring the helper method modules.
 require Rails.root.to_s+'/features/support/general_helper'
+require Rails.root.to_s+'/features/support/admin_helper'
 
 RSpec.configure do |config|
   # == Mock Framework
@@ -51,6 +52,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  # Includes the module in /features/support/general_helper.rb.
+  # Includes the helper modules in /features/support/
   config.include GeneralHelper 
+  config.include AdminHelper
 end

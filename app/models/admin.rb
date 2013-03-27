@@ -1,5 +1,6 @@
 class Admin < ActiveRecord::Base
-  attr_accessible :password, :username, :new_password, :password_confirmation
+  attr_accessible :password, :username, :new_password, :password_confirmation,
+                  :external
   has_secure_password
   has_one :artist, inverse_of: :admin
 
@@ -21,7 +22,9 @@ class Admin < ActiveRecord::Base
  the following: @#!$"},
                        confirmation: true
 
-  validates :password_confirmation, presence: true
+  validates_presence_of :password_confirmation
+
+  validates_uniqueness_of :external, message: "can only be set for one admin"
 
   # Callbacks:
 
@@ -29,13 +32,13 @@ class Admin < ActiveRecord::Base
 
   after_create :create_artist
 
-  after_save do |admin|
-    File.open("config/admin.yml", "w") do |file|
-      file.puts "---"
-      file.puts "!ruby/sym username: #{admin.username}"
-      file.puts "!ruby/sym password: #{admin.password}"
-    end
-  end
+#  after_save do |admin|
+#    File.open("config/admin.yml", "w") do |file|
+#      file.puts "---"
+#      file.puts "!ruby/sym username: #{admin.username}"
+#      file.puts "!ruby/sym password: #{admin.password}"
+#    end
+#  end
 
   # Instance methods:
 
@@ -51,15 +54,22 @@ class Admin < ActiveRecord::Base
   # Class methods:
  
   def self.external_config_admin
-    file = Psych.load(File.open("config/admin.yml"))
-    new_external_config_admin = 
-                Admin.create(username: file[:username], 
-                             password: file[:password],
-                             password_confirmation: file[:password])
-    if new_external_config_admin.valid?
-       new_external_config_admin
+    if File.exists?("config/admin.yml")
+      file = Psych.load(File.open("config/admin.yml"))
+      new_external_config_admin = Admin.new(username: file[:username], 
+                                            password: file[:password],
+                               password_confirmation: file[:password])
+      File.delete("config/admin.yml")
+      if new_external_config_admin.save
+         # Maybe change to destroy to prevent unused records floating around?
+         if current_config_admin = Admin.find_by_external(true)
+           current_config_admin.toggle!(:external)
+         end
+         new_external_config_admin.toggle!(:external)
+         new_external_config_admin
+      end
     else
-      Admin.find_by_username(file[:username])
+      Admin.find_by_external(true)
     end
   end
   

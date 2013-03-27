@@ -1,13 +1,26 @@
 require 'spec_helper'
 
 describe Admin do
-  before do
+  before(:each) do
     @admin =  Admin.new(username: 'whistley', password: 'g4tTer!no',
                         password_confirmation: 'g4tTer!no')
   end
 
   it { should respond_to(:username) }
   it { should respond_to(:password) }
+
+  describe 'external flag' do
+    specify { @admin.should respond_to(:external) }
+
+    context 'without flag set' do
+      specify { @admin.should_not be_external }
+    end
+
+    context 'with flag set' do
+      before { @admin.toggle!(:external) }
+      specify { @admin.should be_external }
+    end
+  end
 
   describe 'validations' do
     it 'is valid with valid attributes' do
@@ -152,25 +165,23 @@ describe Admin do
     end
   end
 
-  describe 'external_config_admin class method' do
-    let(:external_admin) do
-      file = Psych.load(File.open('config/admin.yml'))
-      Admin.new(username: file[:username], 
-                password: file[:password],
-                password_confirmation: file[:password])
+  describe 'external_config_admin class method', wip: true do
+    before(:each) do
+      set_up_external_config(@admin)
     end
 
-    it 'should return the admin specified in config/admin.yml' do
-      Admin.external_config_admin.username.should == external_admin.username
-    end 
-
-    it 'should generate the yml admin if it does not exist' do
-      Admin.external_config_admin.destroy
-      Admin.external_config_admin.username.should == external_admin.username
+    after(:each) do
+      tear_down_external_config
     end
 
-    it 'should have an associated artist' do
-      Admin.external_config_admin.artist.should be_true
+    context "with @admin's info inserted into admin.yml" do
+      it "should be the external config admin" do 
+        Admin.external_config_admin.username.should == @admin.username
+      end 
+
+      it 'should have an associated artist' do
+        Admin.external_config_admin.artist.should be_true
+      end
     end
   end
 end

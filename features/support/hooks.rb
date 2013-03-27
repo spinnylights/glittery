@@ -1,9 +1,7 @@
 Before do
-  @config = IO.read(Rails.root.to_s+"/config/admin.yml")
+  set_up_external_config(fresh_admin)
 end
 
 After do
-  File.open(Rails.root.to_s+"/config/admin.yml", "w") do |file|
-    file.puts @config
-  end
+  tear_down_external_config
 end

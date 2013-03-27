@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe "bio display" do
+  before do
+    admin = Admin.new(username: 'whistley', 
+                      password: 'g4tTer!no')
+    set_up_external_config(admin)
+  end
+
+  after do
+    tear_down_external_config
+  end
+
   let(:artist) { Admin.external_config_admin.artist }
 
   context "with no bio information" do

@@ -8,6 +8,10 @@ module GeneralHelper
     click_button 'Submit'
   end
 
+  def fresh_admin
+    Admin.new(username: "fastwishes", password: "m!stY5ands")
+  end
+
   def wrong_username
     'whistleybustley'
   end

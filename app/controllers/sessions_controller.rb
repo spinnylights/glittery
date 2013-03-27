@@ -4,13 +4,7 @@ class SessionsController < ApplicationController
       redirect_to edit_admin_path
     end
 
-    admin = Admin.new
-    admin.populate_attr_from_config
-    unless admin.save 
-      admin = Admin.find_by_username(admin.username)
-      admin.populate_attr_from_config
-      admin.save
-    end
+    Admin.external_config_admin
   end
 
   def create

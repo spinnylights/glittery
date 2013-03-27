@@ -1,15 +1,5 @@
-Given /^I am logged in as "(.*?)" with the password "(.*?)"$/ do |username, password|
-  admin = Admin.create(username: username, password: password,
-                       password_confirmation: password)
-
-  log_in(admin.username, admin.password)
-  page.should have_text 'Administration'
-
-  store_admin(admin)
-end
-
 Given /^that I am logged in as an admin$/ do
-  admin = Admin.external_config_admin
+  admin = Admin.external_config_admin 
   log_in(admin.username, admin.password)
   store_admin(admin)
 end
