@@ -27,9 +27,9 @@ Then /^I should see the artwork image$/ do
 end
 
 Then /^I should see the name of the work$/ do
-  page.should have_selector('.//div[@class="single_art"]/h2') 
+  page.should have_selector('.//div[@id="single_art"]/h2') 
 end
 
 Then /^I should see a description of the work$/ do
-  page.should have_selector('.//div[@class="single_art"]/p')
+  page.should have_selector('.//div[contains(./@id, "description")]/p')
 end

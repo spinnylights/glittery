@@ -1,7 +1,7 @@
 When /^I delete an artwork$/ do
   visit '/admin/edit'
   click_link 'Edit Gallery'
-  page.find(".//div[@id='#{artwork_name}']/a[@data-method='delete']")
+  page.find(".//div[@id='#{artwork_name}']//a[@data-method='delete']")
            .click
 end
 

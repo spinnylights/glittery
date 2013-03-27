@@ -1,7 +1,6 @@
 When /^I click on their bio link from the main page$/ do
   visit '/'
   click_link "bio"
-  page.should have_selector(:xpath, './/p[@id="bio"]')
 end
 
 Then /^I should see the artist's info/ do
