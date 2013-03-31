@@ -6,7 +6,11 @@
     <%= image_tag @artist.photo.url %>
   <% end %>
   <% unless @artist.bio == "" %>
-    <div id="bio"><%= simple_format h( @artist.bio ) %></div>
+    <div id="bio">
+      <div id="bio_container">
+      <%= simple_format h( @artist.bio ) %>
+      </div>
+    </div>
   <% end %>
   <% unless @artist.email.blank? %>
     <p id="email">
