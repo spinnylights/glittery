@@ -9,7 +9,9 @@ module SessionsHelper
   end
 
   def signed_in?
-    !current_admin.nil?
+    if cookies[:remember_token]
+      !current_admin.nil?
+    end
   end
 
   def sign_out

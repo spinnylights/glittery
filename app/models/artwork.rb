@@ -12,7 +12,8 @@
 
 class Artwork < ActiveRecord::Base
   attr_accessible :description, :image, :name
-  has_attached_file :image, { url: '/art/:filename' }
+  has_attached_file :image, styles: { gallery: "200x200>" },  
+                            url: '/art/:filename'
   belongs_to :artist
 
   validates :image, attachment_presence: { if: :image, 

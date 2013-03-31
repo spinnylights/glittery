@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'pg'
-gem 'faker'
-gem 'launchy'
 gem 'bcrypt-ruby'
 gem 'paperclip', '~> 3.0' 
 gem 'rmagick'
@@ -12,11 +10,13 @@ gem 'rainbow'
 gem 'psych'
 
 group :development do
+  gem 'faker'
   gem 'annotate'
 end
 
 group :test do
   gem 'capybara'
+#  gem 'launchy'
   gem 'cucumber-rails', require: false
   gem 'rspec-rails', '~> 2.0'
   gem 'database_cleaner'
