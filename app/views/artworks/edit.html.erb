@@ -1,4 +1,4 @@
-<%= image_tag(@artwork.image, id: 'edit_artwork_image') %>
+<%= image_tag @artwork.image.url(:gallery) %>
 <%= form_for @artwork, url: { action: 'update' }, 
   html: { class: 'artwork_form' } do |a| %>
   <%= a.label      :name %>
