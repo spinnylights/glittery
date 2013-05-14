@@ -1,6 +1,6 @@
 <div id="single_art">
   <h2><%= @artwork.name %></h2>
-  <%= image_tag @artwork.image.url %>
+  <%= image_tag @artwork.image.url(:full) %>
   <div id="description_of_artwork">
     <%= simple_format h( @artwork.description ) %>
   </div>

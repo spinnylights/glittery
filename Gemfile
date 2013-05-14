@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails'
 gem 'pg'
 gem 'bcrypt-ruby'
-gem 'paperclip', '~> 3.0' 
+gem 'paperclip'
 gem 'rmagick'
 gem 'dynamic_form'
 gem 'rainbow'
@@ -18,7 +18,7 @@ group :test do
   gem 'capybara'
 #  gem 'launchy'
   gem 'cucumber-rails', require: false
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'aruba'

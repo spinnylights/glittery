@@ -11,7 +11,7 @@ Feature: Admin login info YAML generator
   #
  
   Scenario: Installer uses script correctly
-    When I run `config/create_admin` interactively
+    When I run `~/Applications/code/Ruby/Rails/glittery/config/create_admin` interactively
     And  I type "roseyrangoon"
     And  I type "s!xH4tsy"
     And  I close the stdin stream
